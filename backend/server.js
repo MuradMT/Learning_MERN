@@ -1,20 +1,27 @@
 "use strict";
+import express from 'express';
 require('dotenv').config();
-const express= require('express');
+//const express= require('express');
+
+const workoutRoutes=require('./routes/workouts');
 
 //creates express app
 const app=express();
 
-//middleware
+//middleware'
+app.use(express.json());//to check http verb which contains some data like post request body
+
 app.use((req,res,next)=>{
      console.log(req.path, req.method);
      next();
 });
 
 //routes
-app.get("/",(req,res)=>{
-    res.json({message:"Welcome to app"});
-});
+// app.get("/",(req,res)=>{
+//     res.json({message:"Welcome to app"});
+// });
+
+app.use('/api/workouts',workoutRoutes);
 
 //listen for requests
 app.listen(process.env.PORT,()=>{
