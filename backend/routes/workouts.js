@@ -1,5 +1,5 @@
 import express from "express";
-import {createWorkout,getWorkouts,getWorkout} from "../controllers/workoutController.js";
+import {createWorkout,getWorkouts,getWorkout,deleteWorkout,updateWorkout} from "../controllers/workoutController.js";
 
 //Purpose: Routes in Express.js define the endpoints (or paths) of your application
 //and specify how the application should respond to client requests for each path.
@@ -11,13 +11,9 @@ router.get("/:id", getWorkout);
 
 router.post("/",createWorkout);
 
-router.delete("/:id", (req, res) => {
-  res.json({ message: "DELETE a workout" });
-});
+router.delete("/:id", deleteWorkout);
 
-router.patch("/:id", (req, res) => {
-  res.json({ message: "UPDATE a workout" });
-});
+router.patch("/:id",updateWorkout);
 
 // module.exports = router;
 export default router;
